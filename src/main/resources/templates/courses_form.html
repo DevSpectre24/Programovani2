@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${course.id != null ? 'Edit Course' : 'Add course'}"></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<h1 th:text="${course.id != null ? 'Edit Course' : 'Add course'}"></h1>
+
+<form method="post" th:action="@{/courses/save}" th:object="${course}">
+    <input type="hidden" th:field="*{id}">
+    Name: <input type="text" th:field="*{name}">
+    <select th:field="*{lecturer}">
+        <option th:each="lec: ${lecturers}"
+                th:value="${lec.id}" th:text="${lec.name}"></option>
+    </select>
+    <input type="submit" value="Save">
+</form>
+
+</body>
+</html>
