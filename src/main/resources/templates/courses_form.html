@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${course.id != null ? 'Edit Course' : 'Add course'}"></title>
+    <title th:text="${course.id != null ? 'Edit Course' : 'Add course'}">Course Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div th:replace="navbar :: navbar"></div>
-<h1 th:text="${course.id != null ? 'Edit Course' : 'Add course'}"></h1>
+<body class="bg-gray-50 min-h-screen p-8">
 
-<form method="post" th:action="@{/courses/save}" th:object="${course}">
+<!-- Navbar -->
+<div th:replace="navbar :: navbar"></div>
+
+<!-- Nadpis -->
+<h1 class="text-2xl font-bold mb-4 text-center" th:text="${course.id != null ? 'Edit Course' : 'Add Course'}"></h1>
+
+<!-- Formulář -->
+<form method="post" th:action="@{/courses/save}" th:object="${course}" class="bg-white p-6 rounded shadow max-w-md mx-auto space-y-4">
     <input type="hidden" th:field="*{id}">
-    Name: <input type="text" th:field="*{name}">
-    <select th:field="*{manager}">
-        <option th:each="lec: ${lecturers}"
-                th:value="${lec.id}" th:text="${lec.name}"></option>
-    </select>
-    <input type="submit" value="Save">
+
+    <!-- Název -->
+    <div>
+        <label for="name" class="block font-medium">Name:</label>
+        <input type="text" id="name" th:field="*{name}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+    </div>
+
+    <!-- Manager -->
+    <div>
+        <label for="manager" class="block font-medium">Manager:</label>
+        <select id="manager" th:field="*{manager}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 bg-white">
+            <option th:each="lec : ${lecturers}"
+                    th:value="${lec.id}"
+                    th:text="${lec.name}">
+            </option>
+        </select>
+    </div>
+
+    <!-- Tlačítko -->
+    <div>
+        <input type="submit" value="Save" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 cursor-pointer">
+    </div>
 </form>
 
 </body>

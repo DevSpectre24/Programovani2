@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="${user.id != null ? 'Edit User' : 'Add user'}"></title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen p-8">
 
+<!-- Navbar -->
 <div th:replace="navbar :: navbar"></div>
 
-<h1 th:text="${user.id != null ? 'Edit User' : 'Add user'}"></h1>
+<!-- Nadpis -->
+<h1 class="text-2xl font-bold mb-4" th:text="${user.id != null ? 'Edit User' : 'Add User'}"></h1>
 
-<form method="post" th:action="@{/users/save}" th:object="${user}">
+<!-- Formulář -->
+<form method="post" th:action="@{/users/save}" th:object="${user}" class="space-y-4 bg-white p-6 rounded shadow max-w-md mx-auto">
+    <!-- Skryté ID pro editaci -->
     <input type="hidden" th:field="*{id}">
-    Name: <input type="text" th:field="*{name}">
-    <input type="submit" value="Save">
+
+    <!-- Jméno -->
+    <div>
+        <label for="name" class="block font-medium">Name:</label>
+        <input type="text" id="name" th:field="*{name}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+    </div>
+
+    <!-- Heslo -->
+    <div>
+        <label for="password" class="block font-medium">Password:</label>
+        <input type="password" id="password" th:field="*{password}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+    </div>
+
+    <!-- Tlačítko -->
+    <div>
+        <input type="submit" value="Save" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+    </div>
 </form>
 
 </body>
