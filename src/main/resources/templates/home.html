@@ -7,21 +7,33 @@
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center justify-start p-8">
 
-<h1 class="text-4xl font-bold mb-4">Home Page</h1>
-<h2 class="text-xl mb-6" th:text="${#authentication.name}">Uživatel</h2>
+<div th:replace="navbar :: navbar"></div>
 
-<div class="flex flex-col space-y-2 mb-6 w-full max-w-md">
-    <a th:href="@{/users/}" class="text-blue-600 hover:underline">List of Users</a>
-    <a th:href="@{/managers/}" class="text-blue-600 hover:underline">List of Managers</a>
-    <a th:href="@{/courses/}" class="text-blue-600 hover:underline">List of Courses</a>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="text-red-600 font-semibold hover:underline">ADMIN SECTION</a>
+<div class="relative bg-blue-600 mx-auto my-12 w-full max-w-7xl rounded-3xl overflow-hidden">
+    <div class="absolute inset-0 hidden overflow-hidden rounded-3xl lg:block" aria-hidden="true">
+        <svg class="absolute bottom-full left-full -translate-x-2/3 translate-y-1/3 transform xl:top-0 xl:bottom-auto xl:translate-y-0"
+             width="404" height="384" fill="none" viewBox="0 0 404 384" aria-hidden="true">
+            <defs>
+                <pattern id="pattern1" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect x="0" y="0" width="4" height="4" class="text-blue-500" fill="currentColor" />
+                </pattern>
+            </defs>
+            <rect width="404" height="384" fill="url(#pattern1)" />
+        </svg>
+        <svg class="absolute top-full -translate-x-1/3 -translate-y-1/3 transform xl:-translate-y-1/2"
+             width="404" height="384" fill="none" viewBox="0 0 404 384" aria-hidden="true">
+            <rect width="404" height="384" fill="url(#pattern1)" />
+        </svg>
+    </div>
+    <div class="relative mx-auto max-w-md space-y-6 px-6 py-12 sm:max-w-3xl sm:py-16 lg:max-w-4xl lg:px-12">
+        <h2 class="text-3xl font-bold tracking-tight text-white">Welcome to Staff & Project Management App</h2>
+        <p class="text-lg text-white">
+            An internal web application for managing employees, roles and their assigned projects in your organization.
+        </p>
+        <a class="inline-block rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-blue-700 shadow-md hover:bg-slate-50"
+           href="#">Explore features</a>
+    </div>
 </div>
-
-<form th:action="@{/logout}" method="post">
-    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
-        Logout
-    </button>
-</form>
 
 </body>
 </html>

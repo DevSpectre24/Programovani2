@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>List of Courses</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<a th:href="@{/courses/new}">Add new Course</a>
+<body class="bg-gray-50 min-h-screen p-8">
 
-<ul>
-    <li th:each="course: ${courses}">
-        <a th:href="@{'/courses/' + ${course.id}}" th:text="${course.name}"></a>
-    </li>
-</ul>
+<!-- Navbar -->
+<div th:replace="navbar :: navbar"></div>
+
+<!-- Obsah -->
+<div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">Courses</h1>
+
+    <a th:href="@{/courses/new}"
+       class="inline-block mb-4 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+        Add New Course
+    </a>
+
+    <ul class="divide-y divide-gray-200">
+        <li th:each="course : ${courses}" class="py-2">
+            <a th:href="@{'/courses/' + ${course.id}}"
+               th:text="${course.name}"
+               class="text-blue-600 hover:underline"></a>
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>

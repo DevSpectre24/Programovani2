@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 <div>
+    <div th:replace="navbar :: navbar"></div>
     <h1>Admin Area</h1>
     <p>This content is visible only to admins.</p>
     <a th:href="@{/}">Back to Home</a>

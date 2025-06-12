@@ -7,6 +7,8 @@
 </head>
 <body class="bg-gray-50 px-8 py-12">
 
+<div th:replace="navbar :: navbar"></div>
+
 <div class="max-w-xl mx-auto bg-white p-6 rounded shadow text-center">
     <h1 class="text-xl font-semibold text-red-600 mb-6"
         th:text="${'Are you sure you want to delete manager: ' + manager.name + '?'}"></h1>
