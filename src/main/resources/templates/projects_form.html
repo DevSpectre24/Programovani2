@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${project.id != null ? 'Edit Project' : 'Add Project'}">Project Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-8">
+
+<!-- Navbar -->
+<div th:replace="navbar :: navbar"></div>
+
+<!-- Nadpis -->
+<h1 class="text-2xl font-bold mb-6 text-center" th:text="${project.id != null ? 'Edit Project' : 'Add Project'}"></h1>
+
+<!-- Formulář -->
+<form method="post" th:action="@{/projects/save}" th:object="${project}" class="max-w-md mx-auto bg-white p-6 rounded shadow space-y-6">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <!-- Název projektu -->
+    <div>
+        <label for="name" class="block mb-1 font-medium text-gray-700">Project Name:</label>
+        <input type="text" id="name" th:field="*{name}" required
+               class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+    </div>
+
+    <!-- Manager -->
+    <div>
+        <label for="manager" class="block mb-1 font-medium text-gray-700">Manager:</label>
+        <select id="manager" th:field="*{manager}" class="w-full border border-gray-300 rounded px-3 py-2 bg-white">
+            <option th:each="manager : ${managers}" th:value="${manager.id}" th:text="${manager.name}"></option>
+        </select>
+    </div>
+
+    <!-- Přiřazení uživatelů -->
+    <div>
+        <label class="block mb-1 font-medium text-gray-700">Assigned Users:</label>
+        <select multiple th:field="*{assignedUsers}" class="w-full border border-gray-300 rounded px-3 py-2 bg-white" size="5">
+            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+        </select>
+    </div>
+
+    <!-- Tlačítko -->
+    <div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Save</button>
+    </div>
+
+</form>
+
+</body>
+</html>

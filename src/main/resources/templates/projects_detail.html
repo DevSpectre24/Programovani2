@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="'Project: ' + ${project.name}">Project Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-8">
+
+<!-- Navbar -->
+<div th:replace="navbar :: navbar"></div>
+
+<!-- Obsah -->
+<div class="max-w-xl mx-auto bg-white p-6 rounded shadow space-y-4">
+    <h1 class="text-2xl font-bold text-gray-800" th:text="'Project: ' + ${project.name}"></h1>
+
+    <p class="text-gray-600" th:text="'ID: ' + ${project.id}"></p>
+
+    <p class="text-gray-700 font-medium" th:if="${project.manager != null}"
+       th:text="'Manager: ' + ${project.manager.name}"></p>
+    <p class="text-gray-400 italic" th:if="${project.manager == null}">
+        Manager not assigned
+    </p>
+
+    <div>
+        <h2 class="text-lg font-semibold mb-2">Assigned Users:</h2>
+        <ul class="list-disc list-inside space-y-1">
+            <li th:each="user : ${project.assignedUsers}" th:text="${user.name}">User Name</li>
+            <li th:if="${#lists.isEmpty(project.assignedUsers)}" class="italic text-gray-400">No users assigned</li>
+        </ul>
+    </div>
+
+    <div class="flex gap-4 mt-6">
+        <a th:href="@{'/projects/' + ${project.id} + '/edit'}"
+           class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+            Edit Project
+        </a>
+
+        <a th:href="@{'/projects/' + ${project.id} + '/delete'}"
+           class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+            Delete Project
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
