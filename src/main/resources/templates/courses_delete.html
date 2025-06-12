@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Delete Course</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div th:replace="navbar :: navbar"></div>
-<h1 th:text="${'Are you sure you want to delete course: ' + course.name + '?'}"></h1>
+<body class="bg-gray-50 min-h-screen p-8">
 
-<form method="post" th:action="@{'/courses/' + ${id} + '/delete'}">
-    <input type="submit" value="Yes, delete!">
-    <a th:href="@{'/courses/' + ${course.id}}">No</a>
-</form>
+<!-- Navbar -->
+<div th:replace="navbar :: navbar"></div>
+
+<!-- Obsah -->
+<div class="max-w-md mx-auto bg-white p-6 rounded shadow text-center space-y-6">
+
+    <h1 class="text-2xl font-bold text-red-600"
+        th:text="${'Are you sure you want to delete course: ' + course.name + '?'}">
+        Are you sure you want to delete this course?
+    </h1>
+
+    <form method="post" th:action="@{'/courses/' + ${course.id} + '/delete'}" class="space-y-4">
+        <div class="flex justify-center gap-4">
+            <button type="submit"
+                    class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+                Yes, delete
+            </button>
+            <a th:href="@{'/courses/' + ${course.id}}"
+               class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</div>
 
 </body>
 </html>

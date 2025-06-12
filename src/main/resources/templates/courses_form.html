@@ -27,9 +27,9 @@
     <div>
         <label for="manager" class="block font-medium">Manager:</label>
         <select id="manager" th:field="*{manager}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 bg-white">
-            <option th:each="lec : ${lecturers}"
-                    th:value="${lec.id}"
-                    th:text="${lec.name}">
+            <option th:each="manager : ${managers}"
+                    th:value="${manager.id}"
+                    th:text="${manager.name}">
             </option>
         </select>
     </div>

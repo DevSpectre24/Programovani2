@@ -1,18 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Detail of the Course</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div th:replace="navbar :: navbar"></div>
-<h1 th:text="${'Course ' + course.name}"></h1>
-<h5 th:text="${'ID: ' + course.id}"></h5>
-<h3 th:text="${'Lecturer: ' + course.manager.name}"></h3>
+<body class="bg-gray-50 min-h-screen p-8">
 
-<a th:href="@{'/courses/' + ${course.id} + '/edit'}">Edit Course</a>
-<a th:href="@{'/courses/' + ${course.id} + '/delete'}">Delete Course</a>
+<!-- Navbar -->
+<div th:replace="navbar :: navbar"></div>
+
+<!-- Obsah -->
+<div class="max-w-xl mx-auto bg-white p-6 rounded shadow space-y-4">
+    <h1 class="text-2xl font-bold text-gray-800" th:text="${'Course: ' + course.name}"></h1>
+
+    <p class="text-gray-600" th:text="${'ID: ' + course.id}"></p>
+
+    <p class="text-gray-700 font-medium"
+       th:if="${course.manager != null}"
+       th:text="'Lecturer: ' + ${course.manager.name}"></p>
+
+    <p class="text-gray-400 italic" th:if="${course.manager == null}">
+        Lecturer not assigned
+    </p>
+
+    <div class="flex gap-4 mt-6">
+        <a th:href="@{'/courses/' + ${course.id} + '/edit'}"
+           class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+            Edit Course
+        </a>
+
+        <a th:href="@{'/courses/' + ${course.id} + '/delete'}"
+           class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+            Delete Course
+        </a>
+    </div>
+</div>
 
 </body>
 </html>
