@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detail of the Course</title>
+    <title>Course Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 min-h-screen p-8">
@@ -11,20 +11,23 @@
 <div th:replace="navbar :: navbar"></div>
 
 <!-- Obsah -->
-<div class="max-w-xl mx-auto bg-white p-6 rounded shadow space-y-4">
-    <h1 class="text-2xl font-bold text-gray-800" th:text="${'Course: ' + course.name}"></h1>
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow space-y-6">
 
-    <p class="text-gray-600" th:text="${'ID: ' + course.id}"></p>
+    <!-- Hlavní nadpis -->
+    <div class="border-b pb-4">
+        <h1 class="text-3xl font-bold text-gray-800" th:text="${course.name}">Course Name</h1>
+        <p class="text-sm text-gray-500 mt-1" th:text="'Course ID: ' + ${course.id}">Course ID</p>
+    </div>
 
-    <p class="text-gray-700 font-medium"
-       th:if="${course.manager != null}"
-       th:text="'Lecturer: ' + ${course.manager.name}"></p>
+    <!-- Informace o lektorovi -->
+    <div>
+        <h2 class="text-lg font-semibold text-gray-700">Lecturer</h2>
+        <p th:if="${course.manager != null}" class="text-gray-800" th:text="${course.manager.name}">John Doe</p>
+        <p th:if="${course.manager == null}" class="text-gray-400 italic">Not assigned</p>
+    </div>
 
-    <p class="text-gray-400 italic" th:if="${course.manager == null}">
-        Lecturer not assigned
-    </p>
-
-    <div class="flex gap-4 mt-6">
+    <!-- Akce -->
+    <div class="flex gap-4 pt-4 border-t">
         <a th:href="@{'/courses/' + ${course.id} + '/edit'}"
            class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
             Edit Course
@@ -35,6 +38,7 @@
             Delete Course
         </a>
     </div>
+
 </div>
 
 </body>

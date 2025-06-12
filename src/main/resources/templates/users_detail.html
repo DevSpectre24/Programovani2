@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detail of the User</title>
+    <title>User Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen p-8">
 
+<!-- Navbar -->
 <div th:replace="navbar :: navbar"></div>
 
-<h1 th:text="${'User ' + user.name}"></h1>
-<h5 th:text="${'ID: ' + user.id}"></h5>
+<!-- Obsah -->
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow space-y-6">
 
-<a th:href="@{'/users/' + ${user.id} + '/edit'}">Edit User</a>
-<a th:href="@{'/users/' + ${user.id} + '/delete'}">Delete User</a>
+    <!-- Nadpis -->
+    <div class="border-b pb-4">
+        <h1 class="text-3xl font-bold text-gray-800" th:text="${user.name}">User Name</h1>
+        <p class="text-sm text-gray-500 mt-1" th:text="'User ID: ' + ${user.id}">User ID</p>
+    </div>
+
+    <!-- Akce -->
+    <div class="flex gap-4 pt-4 border-t">
+        <a th:href="@{'/users/' + ${user.id} + '/edit'}"
+           class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+            Edit User
+        </a>
+
+        <a th:href="@{'/users/' + ${user.id} + '/delete'}"
+           class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+            Delete User
+        </a>
+    </div>
+
+</div>
 
 </body>
 </html>
