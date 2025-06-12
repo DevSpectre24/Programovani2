@@ -2,7 +2,7 @@ package cz.uhk.kpro2.controller;
 
 import cz.uhk.kpro2.model.Course;
 import cz.uhk.kpro2.service.CourseService;
-import cz.uhk.kpro2.service.LecturerService;
+import cz.uhk.kpro2.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
 
     private final CourseService courseService;
-    private final LecturerService lecturerService;
+    private final ManagerService managerService;
 
     @Autowired
-    public CourseController(CourseService courseService, LecturerService lecturerService) {
+    public CourseController(CourseService courseService, ManagerService managerService) {
         this.courseService = courseService;
-        this.lecturerService = lecturerService;
+        this.managerService = managerService;
     }
 
     @GetMapping("/")
@@ -30,7 +30,7 @@ public class CourseController {
     @GetMapping("/new")
     public String newCourse(Model model) {
         model.addAttribute("course", new Course());
-        model.addAttribute("lecturers", lecturerService.getAllLecturers());
+        model.addAttribute("managers", managerService.getAllManagers()); // ZMĚNA zde
         return "courses_form";
     }
 
@@ -48,7 +48,7 @@ public class CourseController {
     public String editCourse(Model model, @PathVariable long id) {
         Course course = courseService.getCourse(id);
         if (course != null) {
-            model.addAttribute("lecturers", lecturerService.getAllLecturers());
+            model.addAttribute("managers", managerService.getAllManagers()); // ZMĚNA zde
             model.addAttribute("course", course);
             return "courses_form";
         }
@@ -60,7 +60,6 @@ public class CourseController {
         courseService.saveCourse(course);
         return "redirect:/courses/";
     }
-
 
     @GetMapping("/{id}/delete")
     public String deleteCourse(Model model, @PathVariable long id) {
@@ -77,5 +76,4 @@ public class CourseController {
         courseService.deleteCourse(id);
         return "redirect:/courses/";
     }
-
 }

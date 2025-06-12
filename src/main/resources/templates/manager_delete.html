@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 px-8 py-12">
+
+<div class="max-w-xl mx-auto bg-white p-6 rounded shadow text-center">
+    <h1 class="text-xl font-semibold text-red-600 mb-6"
+        th:text="${'Are you sure you want to delete manager: ' + manager.name + '?'}"></h1>
+
+    <form method="post" th:action="@{'/managers/' + ${manager.id} + '/delete'}" class="inline-block">
+        <button type="submit"
+                class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+            Yes, delete!
+        </button>
+    </form>
+
+    <a th:href="@{'/managers/' + ${manager.id}}"
+       class="ml-4 inline-block bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400">
+        No, go back
+    </a>
+</div>
+
+</body>
+</html>

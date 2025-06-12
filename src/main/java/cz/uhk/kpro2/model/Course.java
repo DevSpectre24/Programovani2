@@ -11,14 +11,14 @@ public class Course {
     private String name;
 
     @ManyToOne
-    private Lecturer lecturer;
+    private Manager manager;
 
-    public Lecturer getLecturer() {
-        return lecturer;
+    public Manager getManager() {
+        return manager;
     }
 
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
     public long getId() {

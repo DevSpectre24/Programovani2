@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail of the Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 px-8 py-12">
+
+<div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-2" th:text="${'Manager: ' + manager.name}"></h1>
+    <h5 class="text-gray-700 mb-4" th:text="${'ID: ' + manager.id}"></h5>
+
+    <div class="space-x-4">
+        <a th:href="@{'/managers/' + ${manager.id} + '/edit'}"
+           class="text-indigo-600 hover:underline">Edit Manager</a>
+
+        <a th:href="@{'/managers/' + ${manager.id} + '/delete'}"
+           class="text-red-600 hover:underline">Delete Manager</a>
+    </div>
+</div>
+
+</body>
+</html>

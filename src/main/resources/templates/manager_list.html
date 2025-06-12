@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Managers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-8">
+
+<div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">Managers</h1>
+
+    <a href="#" th:href="@{/managers/new}"
+       class="inline-block mb-4 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+        Add New Manager
+    </a>
+
+    <ul class="space-y-2">
+        <li th:each="manager: ${managers}">
+            <a th:href="@{'/managers/' + ${manager.id}}"
+               th:text="${manager.name}"
+               class="text-blue-600 hover:underline">
+            </a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
