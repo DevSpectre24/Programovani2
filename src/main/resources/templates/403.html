@@ -1,15 +1,28 @@
-<!-- src/main/resources/templates/custom403.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en" class="h-full" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Forbidden</title>
+  <meta charset="UTF-8">
+  <title>403 - Forbidden</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1>403 - Forbidden</h1>
+<body class="h-full bg-white">
 
-<div th:replace="navbar :: navbar"></div>
+<!-- Navbar -->
+<div th:replace="navbar :: navbar" class="w-full absolute top-0 left-0"></div>
 
-<p>Sorry, you don't have permission to access this page.</p>
+<!-- Obsah -->
+<main class="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
+  <div class="text-center">
+    <p class="text-base font-semibold text-red-600">403</p>
+    <h1 class="mt-4 text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">Access Denied</h1>
+    <p class="mt-6 text-lg leading-7 text-gray-600">Sorry, you don’t have permission to access this page.</p>
+    <div class="mt-10 flex items-center justify-center gap-x-6">
+      <a href="/" class="rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        Go back home
+      </a>
+    </div>
+  </div>
+</main>
+
 </body>
 </html>
